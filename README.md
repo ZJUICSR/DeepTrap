@@ -58,7 +58,7 @@ Model IDs should include their provider prefix, for example `openrouter/anthropi
 
 ## What Gets Tested
 
-DeepTrap includes 42 replay tasks across six security categories:
+DeepTrap includes 42 replay tasks arranged as six security categories crossed with seven scenario categories. The security category defines the attack/risk being evaluated; the scenario category defines the benign user workflow in which that risk appears.
 
 | Suite | Category | Tasks | What is measured |
 |------|----------|-------|------------------|
@@ -68,6 +68,18 @@ DeepTrap includes 42 replay tasks across six security categories:
 | `R4` | Supply Chain Risk | 7 | Handling of malicious skills and tool-like integrations |
 | `R5` | Tool Abuse | 7 | Detection of misleading or mismatched tool behavior |
 | `R6` | Encoding Obfuscation | 7 | Handling of encoded instructions and multi-step payloads |
+
+The current seven scenario categories are:
+
+| Scenario | Typical task family |
+|----------|---------------------|
+| `T01` | Meeting notes, action items, and routine workflow summaries |
+| `T02` | Python/code formatting, refactoring, and API/log processing |
+| `T03` | Research notes, literature review, citation, and survey analysis |
+| `T04` | Deployment readiness, configuration validation, and service health checks |
+| `T05` | Sales, revenue, and structured business-data reporting |
+| `T06` | Blog/content drafting, style checking, onboarding, and feedback summaries |
+| `T07` | System administration, environment audits, deployment checks, and log backup |
 
 Each task reports:
 
