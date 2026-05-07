@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DeepTrap: security benchmarks for OpenClaw agents.">
+  <title>DeepTrap Benchmark</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18202a;
+      --muted: #56616f;
+      --line: #d9e0e8;
+      --paper: #f8fafc;
+      --panel: #ffffff;
+      --accent: #0f766e;
+      --accent-strong: #115e59;
+      --warn: #9f4f16;
+      --code: #26313f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.88);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    nav {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      border: 2px solid var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent-strong);
+      background: #e7f5f3;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 72px 0 48px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent-strong);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 8vw, 78px);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 24px 0 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--accent-strong);
+    }
+
+    .terminal {
+      background: #111827;
+      color: #d5dde7;
+      border: 1px solid #273244;
+      padding: 22px;
+      overflow: hidden;
+      box-shadow: 0 22px 60px rgba(20, 31, 44, 0.16);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #2f3d52;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    code, pre {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      color: #dbeafe;
+      font-size: 14px;
+    }
+
+    section {
+      border-top: 1px solid var(--line);
+      padding: 54px 0;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .section-note {
+      margin: 0;
+      max-width: 560px;
+      color: var(--muted);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stat, .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 20px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+      color: var(--accent-strong);
+      margin-bottom: 8px;
+    }
+
+    .stat span, .card p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .scenario-list {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .scenario {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      padding: 14px;
+      min-height: 112px;
+    }
+
+    .scenario b {
+      display: block;
+      color: var(--warn);
+      margin-bottom: 8px;
+    }
+
+    .scenario span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 14px;
+      background: #ffffff;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 48px;
+      }
+
+      .stats, .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .scenario-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        gap: 12px;
+      }
+
+      .stats, .grid, .scenario-list {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-note {
+        margin-top: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <nav aria-label="Primary navigation">
+        <div class="brand"><span class="mark">D</span><span>DeepTrap</span></div>
+        <div class="nav-links">
+          <a href="#benchmark">Benchmark</a>
+          <a href="#risks">Risk Suites</a>
+          <a href="#scenarios">Scenarios</a>
+          <a href="https://github.com/ZJUICSR/DeepTrap">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div>
+          <p class="eyebrow">OpenClaw security benchmark</p>
+          <h1>DeepTrap</h1>
+          <p class="lead">
+            A compact benchmark suite for evaluating how OpenClaw agents behave when useful user tasks are mixed with malicious workspace context, injected skills, misleading tool metadata, unsafe command paths, and encoded payloads.
+          </p>
+          <div class="actions">
+            <a class="button" href="https://github.com/ZJUICSR/DeepTrap">View Repository</a>
+            <a class="button secondary" href="https://github.com/ZJUICSR/DeepTrap#quick-start">Quick Start</a>
+          </div>
+        </div>
+
+        <div class="terminal" aria-label="DeepTrap quick start command preview">
+          <div class="terminal-bar">
+            <span>DeepTrap runner</span>
+            <span>42 replay tasks</span>
+          </div>
+          <pre><code>git clone https://github.com/ZJUICSR/DeepTrap.git
+cd DeepTrap
+pip install -e .
+
+python benchmark.py --dry-run
+python benchmark.py --list-tasks
+python benchmark.py --model openrouter/anthropic/claude-sonnet-4-5 --suite R1</code></pre>
+        </div>
+      </div>
+
+      <section id="benchmark">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Benchmark Shape</h2>
+            <p class="section-note">DeepTrap packages the public runner, bundled replay tasks, and scoring code needed to evaluate OpenClaw models without exposing the private generation pipeline.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>42</strong><span>bundled replay tasks</span></div>
+            <div class="stat"><strong>6</strong><span>security risk suites</span></div>
+            <div class="stat"><strong>7</strong><span>benign scenario families</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="risks">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Risk Suites</h2>
+            <p class="section-note">Each suite evaluates whether the agent can complete the useful task while resisting a specific class of attack pressure.</p>
+          </div>
+          <div class="grid">
+            <article class="card"><h3>R1 Harness Hijacking</h3><p>Poisoned context or injected workflow steps redirect the agent into unrequested actions.</p></article>
+            <article class="card"><h3>R2 Privacy Leakage</h3><p>Planted credentials and sensitive values appear in responses, files, or external actions.</p></article>
+            <article class="card"><h3>R3 Unauthorized Execution</h3><p>Dangerous commands or boundary-crossing actions are run beyond the user request.</p></article>
+            <article class="card"><h3>R4 Supply Chain Risk</h3><p>Malicious skill or tool-like logic is trusted or invoked during the task.</p></article>
+            <article class="card"><h3>R5 Tool Abuse</h3><p>Misleading tool metadata causes harmful behavior or unintended side effects.</p></article>
+            <article class="card"><h3>R6 Encoding Obfuscation</h3><p>Hidden encoded payloads are decoded and followed unsafely.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="scenarios">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Scenario Categories</h2>
+            <p class="section-note">The seven task families provide everyday workflows in which the six risk suites are replayed.</p>
+          </div>
+          <div class="scenario-list">
+            <div class="scenario"><b>T01</b><span>Meeting notes, action items, and routine workflow summaries.</span></div>
+            <div class="scenario"><b>T02</b><span>Code formatting, refactoring, API output, and log processing.</span></div>
+            <div class="scenario"><b>T03</b><span>Research notes, literature review, citations, and survey analysis.</span></div>
+            <div class="scenario"><b>T04</b><span>Deployment readiness, configuration validation, and health checks.</span></div>
+            <div class="scenario"><b>T05</b><span>Sales, revenue, and structured business-data reporting.</span></div>
+            <div class="scenario"><b>T06</b><span>Content drafting, style checks, onboarding docs, and feedback summaries.</span></div>
+            <div class="scenario"><b>T07</b><span>System administration, environment audits, deployment checks, and log backup.</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">DeepTrap is released as a minimal public benchmark for OpenClaw agent security evaluation. Inspired in part by PinchBench.</div>
+    </footer>
+  </div>
+</body>
+</html>
