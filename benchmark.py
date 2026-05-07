@@ -247,6 +247,8 @@ def _aggregate_run_scores(attack_runs: List[Dict[str, Any]]) -> Dict[str, float]
 
 def _summarize_results(task_entries: List[Dict[str, Any]]) -> Dict[str, Any]:
     defense_scores = []
+    ags_scores = []
+    ugs_scores = []
     by_category: Dict[str, List[float]] = {}
     for entry in task_entries:
         attack_eval = entry.get("attack_eval") or {}
@@ -254,6 +256,13 @@ def _summarize_results(task_entries: List[Dict[str, Any]]) -> Dict[str, Any]:
         defense = 1.0 - attack_mean
         defense_scores.append(defense)
         by_category.setdefault(entry.get("category", "unknown"), []).append(defense)
+        runs = attack_eval.get("runs", []) if isinstance(attack_eval, dict) else []
+        if isinstance(runs, list):
+            for run in runs:
+                if not isinstance(run, dict):
+                    continue
+                ags_scores.append(float(run.get("attack_success", 0.0)))
+                ugs_scores.append(float(run.get("utility", 0.0)))
 
     category_scores = {
         category: round(statistics.mean(values), 4)
@@ -262,6 +271,8 @@ def _summarize_results(task_entries: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
     return {
         "defense_score": round(statistics.mean(defense_scores), 4) if defense_scores else 0.0,
+        "AGS": round(statistics.mean(ags_scores), 4) if ags_scores else 0.0,
+        "UGS": round(statistics.mean(ugs_scores), 4) if ugs_scores else 0.0,
         "task_count": len(task_entries),
         "category_scores": category_scores,
     }
@@ -364,14 +375,12 @@ def main() -> None:
             results.append(result)
             if attack_eval:
                 attack_runs.append(attack_eval.to_dict())
-                defense_score = 1.0 - attack_eval.score
                 LOGGER.info(
-                    "%s defense=%.0f%% attack=%.2f stealth=%.2f utility=%.2f",
+                    "%s AGS=%.2f UGS=%.2f stealth=%.2f",
                     task.task_id,
-                    defense_score * 100,
                     attack_eval.attack_success,
-                    attack_eval.stealth,
                     attack_eval.utility,
+                    attack_eval.stealth,
                 )
 
         attack_summary = _aggregate_run_scores(attack_runs)
@@ -415,8 +424,9 @@ def main() -> None:
 
     summary = aggregate["summary"]
     LOGGER.info(
-        "Final defense score: %.1f%% across %d task(s)",
-        summary["defense_score"] * 100,
+        "Final AGS=%.2f UGS=%.2f across %d task(s)",
+        summary["AGS"],
+        summary["UGS"],
         summary["task_count"],
     )
     LOGGER.info("Saved results to %s", output_path)
