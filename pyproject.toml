@@ -1,0 +1,19 @@
+[project]
+name = "deeptrap-benchmark"
+version = "0.1.0"
+description = "Minimal public OpenClaw security benchmark runner"
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml>=6.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

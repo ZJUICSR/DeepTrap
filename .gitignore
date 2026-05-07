@@ -1,0 +1,8 @@
+.agents/
+.codex/
+.git/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+results/
+benchmark.log
