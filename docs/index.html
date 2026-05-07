@@ -269,6 +269,51 @@
       gap: 10px;
     }
 
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    table {
+      width: 100%;
+      min-width: 860px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 13px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    th {
+      background: #eef6f5;
+      color: var(--accent-strong);
+      font-weight: 750;
+    }
+
+    td:first-child, th:first-child {
+      text-align: left;
+    }
+
+    tbody tr:nth-child(4n + 1),
+    tbody tr:nth-child(4n + 2) {
+      background: #fbfdff;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .metric {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      color: var(--code);
+      font-weight: 700;
+    }
+
     .scenario {
       background: #ffffff;
       border: 1px solid var(--line);
@@ -345,6 +390,7 @@
         <div class="brand"><span class="mark">D</span><span>DeepTrap</span></div>
         <div class="nav-links">
           <a href="#benchmark">Benchmark</a>
+          <a href="#leaderboard">Leaderboard</a>
           <a href="#risks">Risk Suites</a>
           <a href="#scenarios">Scenarios</a>
           <a href="https://github.com/ZJUICSR/DeepTrap">GitHub</a>
@@ -391,6 +437,109 @@ python benchmark.py --model openrouter/anthropic/claude-sonnet-4-5 --suite R1</c
             <div class="stat"><strong>42</strong><span>bundled replay tasks</span></div>
             <div class="stat"><strong>6</strong><span>security risk suites</span></div>
             <div class="stat"><strong>7</strong><span>benign scenario families</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="leaderboard">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Risk Evaluation</h2>
+            <p class="section-note">AGS is Attack Grading Score and UGS is Utility Grading Score. Scores are reported by risk suite.</p>
+          </div>
+          <div class="table-wrap">
+            <table aria-label="Risk evaluation leaderboard">
+              <thead>
+                <tr>
+                  <th>Claw Model</th>
+                  <th>Metric</th>
+                  <th>Risk 1</th>
+                  <th>Risk 2</th>
+                  <th>Risk 3</th>
+                  <th>Risk 4</th>
+                  <th>Risk 5</th>
+                  <th>Risk 6</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2">Deepseek V4 flash</td>
+                  <td class="metric">AGS</td>
+                  <td>0.90</td>
+                  <td>0.96</td>
+                  <td>0.80</td>
+                  <td>0.90</td>
+                  <td>0.82</td>
+                  <td>0.94</td>
+                </tr>
+                <tr>
+                  <td class="metric">UGS</td>
+                  <td>0.98</td>
+                  <td>0.96</td>
+                  <td>1.00</td>
+                  <td>0.96</td>
+                  <td>0.85</td>
+                  <td>1.00</td>
+                </tr>
+                <tr>
+                  <td rowspan="2">MiniMax K2.5</td>
+                  <td class="metric">AGS</td>
+                  <td>0.86</td>
+                  <td>0.89</td>
+                  <td>0.77</td>
+                  <td>0.66</td>
+                  <td>0.90</td>
+                  <td>0.89</td>
+                </tr>
+                <tr>
+                  <td class="metric">UGS</td>
+                  <td>0.92</td>
+                  <td>0.95</td>
+                  <td>1.00</td>
+                  <td>0.88</td>
+                  <td>0.74</td>
+                  <td>0.90</td>
+                </tr>
+                <tr>
+                  <td rowspan="2">Qwen 3.5 plus</td>
+                  <td class="metric">AGS</td>
+                  <td>0.93</td>
+                  <td>0.93</td>
+                  <td>0.86</td>
+                  <td>0.74</td>
+                  <td>0.88</td>
+                  <td>0.97</td>
+                </tr>
+                <tr>
+                  <td class="metric">UGS</td>
+                  <td>0.95</td>
+                  <td>0.92</td>
+                  <td>1.00</td>
+                  <td>0.98</td>
+                  <td>0.93</td>
+                  <td>0.93</td>
+                </tr>
+                <tr>
+                  <td rowspan="2">GLM 5</td>
+                  <td class="metric">AGS</td>
+                  <td>0.81</td>
+                  <td>0.93</td>
+                  <td>0.74</td>
+                  <td>0.83</td>
+                  <td>0.79</td>
+                  <td>0.88</td>
+                </tr>
+                <tr>
+                  <td class="metric">UGS</td>
+                  <td>0.90</td>
+                  <td>0.90</td>
+                  <td>0.98</td>
+                  <td>0.89</td>
+                  <td>0.83</td>
+                  <td>0.88</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
