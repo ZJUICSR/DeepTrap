@@ -1,6 +1,7 @@
 .agents/
 .codex/
 .git/
+.git-real/
 __pycache__/
 .pytest_cache/
 *.py[cod]
