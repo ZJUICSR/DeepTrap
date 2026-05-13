@@ -6,6 +6,12 @@ DeepTrap is a benchmark suite for evaluating how OpenClaw agents behave when ben
 
 The public repository is intentionally minimal: it contains the runner, the bundled replay tasks, and the scoring code needed to evaluate OpenClaw models. It does not include the private task-generation or attack-search pipeline.
 
+## Framework
+
+![DeepTrap framework](docs/assets/framework.jpg)
+
+DeepTrap constructs compromised execution contexts from benign instructions and clean workspaces, searches candidate adversarial payloads with multi-objective reward signals, and refines successful payloads through reflection-based probing.
+
 ## Why DeepTrap?
 
 Most agent benchmarks measure whether a model can complete useful work. DeepTrap focuses on whether the agent can complete useful work **safely**:

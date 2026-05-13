@@ -199,6 +199,26 @@
       border-left: 4px solid var(--accent);
     }
 
+    figure {
+      margin: 0;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     .note {
       color: var(--muted);
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -402,6 +422,20 @@
             <div class="stat"><strong>6</strong><span>Vulnerability classes</span></div>
             <div class="stat"><strong>7</strong><span>Operational scenarios</span></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="framework">
+      <div class="section-head">
+        <h2>Framework</h2>
+        <div>
+          <figure>
+            <img src="assets/framework.jpg" alt="DeepTrap framework diagram showing adversarial setup, reward-guided heuristic search, and reflection-based deep probing.">
+            <figcaption>
+              DeepTrap builds compromised execution contexts from benign instructions and clean workspaces, searches candidate adversarial payloads with multi-objective reward signals, and refines high-value payloads through reflection-based probing.
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
