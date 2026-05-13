@@ -81,6 +81,31 @@ The current seven scenario categories are:
 | `T06` | Blog/content drafting, style checking, onboarding, and feedback summaries |
 | `T07` | System administration, environment audits, deployment checks, and log backup |
 
+## Risk Evaluation
+
+AGS is Attack Grading Score and UGS is Utility Grading Score. Scores are reported by risk suite; `Average` is the mean across Risk 1 through Risk 6.
+
+| Claw Model | Metric | Risk 1 | Risk 2 | Risk 3 | Risk 4 | Risk 5 | Risk 6 | Average |
+|------------|--------|--------|--------|--------|--------|--------|--------|---------|
+| GPT-5.4 | `AGS` | 0.77 | 0.84 | 0.76 | 0.61 | 0.67 | 0.53 | 0.70 |
+| GPT-5.4 | `UGS` | 0.91 | 0.83 | 0.86 | 0.77 | 0.74 | 0.87 | 0.83 |
+| Claude-Sonnet-4.6 | `AGS` | 0.51 | 0.58 | 0.37 | 0.25 | 0.38 | 0.20 | 0.38 |
+| Claude-Sonnet-4.6 | `UGS` | 0.71 | 0.69 | 0.55 | 0.45 | 0.55 | 0.71 | 0.61 |
+| GLM-5 | `AGS` | 0.81 | 0.93 | 0.74 | 0.83 | 0.79 | 0.88 | 0.83 |
+| GLM-5 | `UGS` | 0.90 | 0.90 | 0.98 | 0.89 | 0.83 | 0.88 | 0.90 |
+| Qwen3.5-Plus | `AGS` | 0.93 | 0.93 | 0.86 | 0.74 | 0.88 | 0.97 | 0.88 |
+| Qwen3.5-Plus | `UGS` | 0.95 | 0.92 | 1.00 | 0.98 | 0.93 | 0.93 | 0.95 |
+| MiniMax-M2.5 | `AGS` | 0.86 | 0.89 | 0.77 | 0.66 | 0.90 | 0.89 | 0.83 |
+| MiniMax-M2.5 | `UGS` | 0.92 | 0.95 | 1.00 | 0.88 | 0.74 | 0.90 | 0.90 |
+| DeepSeek-v4-Flash | `AGS` | 0.90 | 0.96 | 0.80 | 0.90 | 0.82 | 0.94 | 0.89 |
+| DeepSeek-v4-Flash | `UGS` | 0.98 | 0.96 | 1.00 | 0.96 | 0.85 | 1.00 | 0.96 |
+| Deepseek-v4-Pro | `AGS` | 0.90 | 0.96 | 0.74 | 0.87 | 0.85 | 0.86 | 0.86 |
+| Deepseek-v4-Pro | `UGS` | 0.90 | 0.91 | 1.00 | 0.81 | 0.84 | 0.89 | 0.89 |
+| MiMo-v2.5 | `AGS` | 0.86 | 0.87 | 0.71 | 0.73 | 0.57 | 0.60 | 0.72 |
+| MiMo-v2.5 | `UGS` | 0.96 | 0.95 | 0.88 | 0.93 | 0.83 | 0.89 | 0.91 |
+| MiMo-v2.5-pro | `AGS` | 0.74 | 0.83 | 0.56 | 0.58 | 0.58 | 0.53 | 0.64 |
+| MiMo-v2.5-pro | `UGS` | 0.92 | 0.90 | 0.88 | 0.87 | 0.71 | 0.87 | 0.86 |
+
 Each task reports:
 
 - `grading`: defense-oriented score, where higher is better
