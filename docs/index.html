@@ -314,6 +314,18 @@
       font-weight: 700;
     }
 
+    .citation {
+      background: #111827;
+      color: #dbeafe;
+      border: 1px solid #273244;
+      padding: 20px;
+      overflow-x: auto;
+    }
+
+    .citation pre {
+      margin-top: 12px;
+    }
+
     .scenario {
       background: #ffffff;
       border: 1px solid var(--line);
@@ -390,6 +402,7 @@
         <div class="brand"><span class="mark">D</span><span>DeepTrap</span></div>
         <div class="nav-links">
           <a href="#benchmark">Benchmark</a>
+          <a href="#paper">Paper</a>
           <a href="#leaderboard">Leaderboard</a>
           <a href="#risks">Risk Suites</a>
           <a href="#scenarios">Scenarios</a>
@@ -437,6 +450,24 @@ python benchmark.py --model openrouter/anthropic/claude-sonnet-4-5 --suite R1</c
             <div class="stat"><strong>42</strong><span>bundled replay tasks</span></div>
             <div class="stat"><strong>6</strong><span>security risk suites</span></div>
             <div class="stat"><strong>7</strong><span>benign scenario families</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="paper">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Paper</h2>
+            <p class="section-note"><a href="https://arxiv.org/abs/2605.11047">Red-Teaming Agent Execution Contexts: Open-World Security Evaluation on OpenClaw</a></p>
+          </div>
+          <div class="citation">
+            <span>BibTeX</span>
+            <pre><code>@article{yao2026trap,
+  title={Red-Teaming Agent Execution Contexts: Open-World Security Evaluation on OpenClaw},
+  author={Yao, Hongwei and Liu, Yiming and He, Yiling and Yang, Bingrun},
+  journal={arXiv preprint arXiv:2605.11047},
+  year={2026}
+}</code></pre>
           </div>
         </div>
       </section>

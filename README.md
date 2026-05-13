@@ -162,6 +162,21 @@ jq '.tasks[] | select(.attack_eval.mean >= 0.8) | {task_id, attack: .attack_eval
 
 DeepTrap was inspired in part by [PinchBench](https://github.com/pinchbench/skill), which provides a practical benchmark suite for measuring OpenClaw agent capability on real-world tasks. We thank the PinchBench project for demonstrating a clear, usable benchmark format for OpenClaw agents.
 
+## Citation
+
+If you use DeepTrap in your research, please cite:
+
+```bibtex
+@article{yao2026trap,
+  title={Red-Teaming Agent Execution Contexts: Open-World Security Evaluation on OpenClaw},
+  author={Yao, Hongwei and Liu, Yiming and He, Yiling and Yang, Bingrun},
+  journal={arXiv preprint arXiv:2605.11047},
+  year={2026}
+}
+```
+
+Paper: [https://arxiv.org/abs/2605.11047](https://arxiv.org/abs/2605.11047)
+
 ## License
 
 MIT — see `LICENSE` when included in the distribution.
