@@ -1,19 +1,3 @@
----
-pretty_name: DeepTrap
-license: mit
-task_categories:
-- text-generation
-tags:
-- benchmark
-- agent-safety
-- security
-- prompt-injection
-- llm-agents
-- openclaw
-size_categories:
-- n<1K
----
-
 # DeepTrap
 
 **Security benchmarks for OpenClaw agents**
