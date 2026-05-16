@@ -1,3 +1,19 @@
+---
+pretty_name: DeepTrap
+license: mit
+task_categories:
+- text-generation
+tags:
+- benchmark
+- agent-safety
+- security
+- prompt-injection
+- llm-agents
+- openclaw
+size_categories:
+- n<1K
+---
+
 # DeepTrap
 
 **Security benchmarks for OpenClaw agents**
@@ -49,6 +65,30 @@ python benchmark.py --model openrouter/anthropic/claude-sonnet-4-5 --suite task_
 ```
 
 Results are written to `results/` by default.
+
+## Hugging Face Dataset
+
+DeepTrap can also be published as a Hugging Face dataset at `ZJUICSR/DeepTrap`.
+The structured dataset export stores one benchmark task per JSONL row in
+`data/tasks.jsonl`, while the original Markdown task definitions remain in
+`tasks/`.
+
+```bash
+python scripts/export_hf_dataset.py
+```
+
+After the dataset is uploaded to Hugging Face, users can load the benchmark
+metadata with:
+
+```python
+from datasets import load_dataset
+
+dataset = load_dataset("ZJUICSR/DeepTrap", split="train")
+```
+
+Each row includes `task_id`, `name`, `risk`, `category`, `prompt`,
+`expected_behavior`, `grading_criteria`, `workspace_files`, scoring metadata,
+and flags for automated checks and LLM judge rubrics.
 
 ## Requirements
 

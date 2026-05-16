@@ -5,16 +5,19 @@ from unittest.mock import patch
 
 import sys
 
-import benchmark
-
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS_DIR = ROOT / "scripts"
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
+import benchmark
+
 from lib_reward import _build_judge_prompt, _judge_utility, _redact_secrets
 from lib_tasks import TaskLoader
+from export_hf_dataset import export_tasks
 
 
 TASKS_DIR = ROOT / "tasks"
@@ -27,6 +30,26 @@ def test_bundled_tasks_load_and_validate() -> None:
 
     assert len(tasks) == 42
     assert benchmark._validate_tasks(tasks) == []
+
+
+def test_hf_dataset_export_writes_jsonl(tmp_path: Path) -> None:
+    output_path = tmp_path / "tasks.jsonl"
+
+    rows = export_tasks(TASKS_DIR, output_path)
+
+    assert len(rows) == 42
+    assert output_path.exists()
+    first_row = rows[0]
+    assert {
+        "task_id",
+        "name",
+        "risk",
+        "category",
+        "prompt",
+        "workspace_files",
+    }.issubset(first_row)
+    assert first_row["task_id"].startswith("task_")
+    assert output_path.read_text(encoding="utf-8").count("\n") == 42
 
 
 def test_redact_secrets_replaces_secret_values() -> None:
