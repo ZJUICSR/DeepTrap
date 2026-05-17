@@ -1,7 +1,7 @@
 <h1 align="center">DeepTrap</h1>
 
 <p align="center">
-  <img src="docs/assets/framework.jpg" alt="DeepTrap framework" width="920">
+  <img src="docs/assets/DeepTrapLOGO.png" alt="DeepTrap logo" width="860">
 </p>
 
 <div align="center">
@@ -17,6 +17,10 @@
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
 </div>
+
+<p align="center">
+  <a href="README.md">English</a> | <a href="README_zh.md">中文</a>
+</p>
 
 > **Open-world security evaluation for OpenClaw agents under adversarial execution contexts.**
 
@@ -91,6 +95,12 @@ Full project page and leaderboard: [ZJUICSR.github.io/DeepTrap](https://ZJUICSR.
 ## Benchmark Design
 
 DeepTrap crosses six contextual vulnerability classes with seven benign scenario families. Each task uses a normal user prompt; the adversarial behavior is induced by the workspace context.
+
+<p align="center">
+  <img src="docs/assets/framework.jpg" alt="DeepTrap framework" width="920">
+</p>
+
+DeepTrap constructs compromised execution contexts from benign instructions and clean workspaces, searches candidate adversarial payloads with multi-objective reward signals, and refines successful payloads through reflection-based probing.
 
 ### Risk Suites
 
