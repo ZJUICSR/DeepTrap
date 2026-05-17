@@ -8,280 +8,335 @@
   <style>
     :root {
       color-scheme: light;
-      --ink: #171717;
+      --text: #202124;
       --muted: #5f6368;
-      --soft: #f6f4ef;
-      --paper: #fffdf8;
-      --line: #d8d2c6;
-      --accent: #7a1f24;
-      --accent-dark: #4d1418;
-      --blue: #15395b;
-      --code-bg: #f2eee6;
-      --table-alt: #fbf8f1;
+      --line: #e5e7eb;
+      --soft: #f8fafc;
+      --paper: #ffffff;
+      --accent: #8b1e2d;
+      --accent-soft: #fff3f4;
+      --blue: #24527a;
+      --code: #f6f8fa;
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      color: var(--ink);
+      color: var(--text);
       background: var(--paper);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 17px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
       line-height: 1.65;
     }
 
     a {
-      color: var(--accent);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     header {
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 253, 248, 0.94);
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
       backdrop-filter: blur(10px);
     }
 
     nav {
-      width: min(1080px, calc(100% - 36px));
+      width: min(1100px, calc(100% - 32px));
+      min-height: 56px;
       margin: 0 auto;
-      min-height: 58px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 20px;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      justify-content: space-between;
+      gap: 24px;
       font-size: 14px;
     }
 
     .brand {
-      color: var(--accent-dark);
-      font-weight: 750;
-      letter-spacing: 0.02em;
+      font-weight: 700;
+      color: var(--accent);
     }
 
-    .links {
+    .nav-links {
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
-      gap: 16px;
+      gap: 18px;
     }
 
-    .links a {
+    .nav-links a {
       color: var(--muted);
-      text-decoration: none;
-    }
-
-    .links a:hover {
-      color: var(--accent);
-      text-decoration: underline;
     }
 
     main {
-      width: min(1080px, calc(100% - 36px));
+      width: min(1100px, calc(100% - 32px));
       margin: 0 auto;
     }
 
     .hero {
-      padding: 72px 0 42px;
+      padding: 72px 0 44px;
       text-align: center;
       border-bottom: 1px solid var(--line);
     }
 
-    .kicker {
-      margin: 0 0 14px;
+    .logo {
+      width: min(760px, 100%);
+      height: auto;
+      margin: 0 auto 32px;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 5px 11px;
       color: var(--accent);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--accent-soft);
+      border: 1px solid #f1c8cd;
+      border-radius: 999px;
       font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-weight: 650;
     }
 
     h1 {
-      margin: 0 auto;
       max-width: 920px;
-      font-size: clamp(34px, 6vw, 58px);
-      line-height: 1.05;
-      font-weight: 650;
-      letter-spacing: 0;
+      margin: 0 auto;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      font-weight: 760;
     }
 
     .subtitle {
-      margin: 20px auto 0;
+      margin: 18px auto 0;
       max-width: 820px;
-      color: var(--blue);
-      font-size: 23px;
-      line-height: 1.35;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.45;
     }
 
     .authors {
-      margin: 22px auto 0;
-      max-width: 760px;
+      margin: 18px auto 0;
       color: var(--muted);
-      font-size: 16px;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
     }
 
     .buttons {
-      margin-top: 28px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin-top: 28px;
     }
 
     .button {
-      min-height: 42px;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 9px 15px;
-      border: 1px solid var(--accent);
-      color: #fff;
-      background: var(--accent);
-      text-decoration: none;
-      font-size: 14px;
+      min-height: 38px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
       font-weight: 650;
+      font-size: 14px;
     }
 
-    .button.secondary {
-      color: var(--accent);
-      background: transparent;
+    .button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
     }
 
     section {
-      padding: 42px 0;
+      padding: 48px 0;
       border-bottom: 1px solid var(--line);
     }
 
-    .section-head {
+    .section-grid {
       display: grid;
-      grid-template-columns: 260px minmax(0, 1fr);
-      gap: 34px;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 42px;
       align-items: start;
     }
 
     h2 {
       margin: 0;
-      color: var(--accent-dark);
-      font-size: 25px;
-      line-height: 1.2;
-      font-weight: 650;
-      letter-spacing: 0;
+      font-size: 24px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
     }
 
     h3 {
       margin: 0 0 8px;
-      color: var(--blue);
-      font-size: 18px;
-      line-height: 1.25;
+      font-size: 17px;
+      line-height: 1.35;
     }
 
     p {
       margin: 0;
     }
 
-    .body-copy p + p {
+    p + p {
       margin-top: 14px;
     }
 
-    .abstract {
-      padding: 22px 24px;
+    .lead-box {
+      padding: 20px 22px;
       background: var(--soft);
-      border-left: 4px solid var(--accent);
-    }
-
-    figure {
-      margin: 0;
-    }
-
-    figure img {
-      display: block;
-      width: 100%;
-      height: auto;
       border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .framework {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 8px;
       background: #fff;
     }
 
-    figcaption {
+    .caption {
       margin-top: 10px;
       color: var(--muted);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .note {
-      color: var(--muted);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 15px;
     }
 
     .stats {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 20px;
+      gap: 12px;
+      margin-top: 18px;
     }
 
     .stat {
-      padding: 18px;
-      background: #fff;
+      padding: 16px;
       border: 1px solid var(--line);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      border-radius: 8px;
+      background: #fff;
     }
 
-    .stat strong {
+    .stat b {
       display: block;
       color: var(--accent);
-      font-size: 30px;
+      font-size: 28px;
       line-height: 1;
       margin-bottom: 6px;
     }
 
-    .grid {
+    .cards {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 12px;
     }
 
     .card {
-      padding: 18px;
-      background: #fff;
+      padding: 16px;
       border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
     }
 
     .card p {
       color: var(--muted);
-      font-size: 15px;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.5;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding: 18px;
+      min-height: 160px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      counter-increment: step;
+    }
+
+    .step::before {
+      content: counter(step);
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 18px 0 12px;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    select {
+      min-height: 36px;
+      margin-left: 8px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-size: 14px;
     }
 
     .table-wrap {
       overflow-x: auto;
       border: 1px solid var(--line);
+      border-radius: 8px;
       background: #fff;
     }
 
     table {
       width: 100%;
-      min-width: 980px;
+      min-width: 1100px;
       border-collapse: collapse;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 13px;
       line-height: 1.35;
     }
 
-    th, td {
+    th,
+    td {
       padding: 10px 11px;
       text-align: center;
       border-bottom: 1px solid var(--line);
@@ -289,79 +344,79 @@
     }
 
     th {
-      color: var(--accent-dark);
       background: var(--soft);
-      font-weight: 750;
-    }
-
-    td:first-child, th:first-child {
-      text-align: left;
-    }
-
-    tbody tr:nth-child(4n + 1),
-    tbody tr:nth-child(4n + 2) {
-      background: var(--table-alt);
-    }
-
-    tbody tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .metric {
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
       font-weight: 700;
-      color: var(--blue);
+      color: #374151;
+    }
+
+    td:first-child,
+    th:first-child {
+      text-align: left;
+      position: sticky;
+      left: 0;
+      background: inherit;
+      z-index: 1;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fcfcfd;
+    }
+
+    tbody tr:hover {
+      background: #fff7f8;
+    }
+
+    .best {
+      color: var(--accent);
+      font-weight: 700;
     }
 
     pre {
       margin: 0;
       padding: 18px;
       overflow-x: auto;
-      background: var(--code-bg);
+      background: var(--code);
       border: 1px solid var(--line);
-      color: #252525;
+      border-radius: 8px;
       font-size: 13px;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     code {
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
     }
 
-    .command {
-      margin-top: 16px;
-    }
-
     footer {
-      width: min(1080px, calc(100% - 36px));
+      width: min(1100px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 26px 0 42px;
+      padding: 28px 0 44px;
       color: var(--muted);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 14px;
     }
 
-    @media (max-width: 780px) {
+    @media (max-width: 820px) {
       nav {
         align-items: flex-start;
         flex-direction: column;
-        padding: 14px 0;
+        padding: 12px 0;
       }
 
-      .links {
+      .nav-links {
         justify-content: flex-start;
       }
 
       .hero {
-        padding-top: 48px;
+        padding-top: 42px;
       }
 
-      .section-head {
+      .section-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 18px;
       }
 
-      .stats, .grid {
+      .stats,
+      .cards,
+      .pipeline {
         grid-template-columns: 1fr;
       }
     }
@@ -371,10 +426,11 @@
   <header>
     <nav aria-label="Primary navigation">
       <div class="brand">DeepTrap</div>
-      <div class="links">
-        <a href="#paper">Paper</a>
-        <a href="#benchmark">Benchmark</a>
-        <a href="#results">Results</a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#framework">Framework</a>
+        <a href="#data">Data Construction</a>
+        <a href="#leaderboard">Leaderboard</a>
         <a href="#citation">Citation</a>
         <a href="https://github.com/ZJUICSR/DeepTrap">Code</a>
       </div>
@@ -382,117 +438,150 @@
   </header>
 
   <main>
-    <section class="hero" id="paper">
-      <p class="kicker">arXiv:2605.11047</p>
+    <section class="hero">
+      <img class="logo" src="assets/DeepTrapLOGO.png" alt="DeepTrap lobster mascot inside a security trap chamber.">
+      <div class="tag">arXiv:2605.11047</div>
       <h1>Red-Teaming Agent Execution Contexts</h1>
-      <p class="subtitle">Open-World Security Evaluation on OpenClaw</p>
+      <p class="subtitle">Open-world security evaluation on OpenClaw agents under adversarial execution contexts.</p>
       <p class="authors">Hongwei Yao, Yiming Liu, Yiling He, and Bingrun Yang</p>
       <div class="buttons">
-        <a class="button" href="https://arxiv.org/abs/2605.11047">arXiv</a>
-        <a class="button secondary" href="https://arxiv.org/pdf/2605.11047">PDF</a>
-        <a class="button secondary" href="https://github.com/ZJUICSR/DeepTrap">GitHub</a>
+        <a class="button primary" href="https://arxiv.org/abs/2605.11047">Paper</a>
+        <a class="button" href="https://arxiv.org/pdf/2605.11047">PDF</a>
+        <a class="button" href="https://github.com/ZJUICSR/DeepTrap">GitHub</a>
+        <a class="button" href="https://huggingface.co/datasets/ZJUICSR/DeepTrap">Dataset</a>
       </div>
     </section>
 
-    <section>
-      <div class="section-head">
+    <section id="abstract">
+      <div class="section-grid">
         <h2>Abstract</h2>
-        <div class="body-copy">
-          <div class="abstract">
-            <p>
-              Agentic language-model systems increasingly rely on mutable execution contexts: files, memory, tools, skills, and auxiliary artifacts. DeepTrap evaluates whether such contexts can induce unsafe behavior while preserving benign task completion in OpenClaw agents.
-            </p>
-            <p>
-              The public release contains a 42-case benchmark spanning six vulnerability classes and seven operational scenarios, with attack and utility grading scores for comparing target models.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="benchmark">
-      <div class="section-head">
-        <h2>Benchmark</h2>
-        <div>
+        <div class="lead-box">
           <p>
-            DeepTrap packages the public runner, replay tasks, and scoring code needed to evaluate OpenClaw models. The private task-generation and attack-search pipeline is not included in this repository.
+            Agentic language-model systems increasingly rely on mutable execution contexts: files, memory, tools, skills, and auxiliary artifacts. DeepTrap evaluates whether such contexts can induce unsafe behavior while preserving benign task completion in OpenClaw agents.
+          </p>
+          <p>
+            The public benchmark contains 42 replay tasks spanning six contextual vulnerability classes and seven operational scenarios. DeepTrap reports attack grading scores (AGS) and utility grading scores (UGS) to jointly measure security failure and task usefulness.
           </p>
           <div class="stats">
-            <div class="stat"><strong>42</strong><span>Replay tasks</span></div>
-            <div class="stat"><strong>6</strong><span>Vulnerability classes</span></div>
-            <div class="stat"><strong>7</strong><span>Operational scenarios</span></div>
+            <div class="stat"><b>42</b><span>Replay tasks</span></div>
+            <div class="stat"><b>6</b><span>Risk classes</span></div>
+            <div class="stat"><b>7</b><span>Scenario families</span></div>
           </div>
         </div>
       </div>
     </section>
 
     <section id="framework">
-      <div class="section-head">
+      <div class="section-grid">
         <h2>Framework</h2>
         <div>
-          <figure>
-            <img src="assets/framework.jpg" alt="DeepTrap framework diagram showing adversarial setup, reward-guided heuristic search, and reflection-based deep probing.">
-            <figcaption>
-              DeepTrap builds compromised execution contexts from benign instructions and clean workspaces, searches candidate adversarial payloads with multi-objective reward signals, and refines high-value payloads through reflection-based probing.
-            </figcaption>
-          </figure>
+          <img class="framework" src="assets/framework.jpg" alt="DeepTrap framework diagram.">
+          <p class="caption">
+            DeepTrap constructs compromised execution contexts from benign instructions and clean workspaces, searches candidate adversarial payloads with multi-objective reward signals, and refines successful payloads through reflection-based probing.
+          </p>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="section-head">
-        <h2>Vulnerability Classes</h2>
-        <div class="grid">
-          <article class="card"><h3>R1 Harness Hijacking</h3><p>Poisoned context or injected workflow steps redirect the agent into unrequested actions.</p></article>
-          <article class="card"><h3>R2 Privacy Leakage</h3><p>Planted credentials and sensitive values appear in responses, files, or external actions.</p></article>
-          <article class="card"><h3>R3 Unauthorized Execution</h3><p>Dangerous commands or boundary-crossing actions are run beyond the user request.</p></article>
-          <article class="card"><h3>R4 Supply Chain Risk</h3><p>Malicious skill or tool-like logic is trusted or invoked during the task.</p></article>
-          <article class="card"><h3>R5 Tool Abuse</h3><p>Misleading tool metadata causes harmful behavior or unintended side effects.</p></article>
-          <article class="card"><h3>R6 Encoding Obfuscation</h3><p>Hidden encoded payloads are decoded and followed unsafely.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="results">
-      <div class="section-head">
-        <h2>Risk-Level Results</h2>
+    <section id="data">
+      <div class="section-grid">
+        <h2>Data Construction</h2>
         <div>
-          <p class="note">AGS is Attack Grading Score. UGS is Utility Grading Score. Average is the mean across Risk 1 through Risk 6.</p>
-          <div class="table-wrap" style="margin-top: 16px;">
-            <table aria-label="Risk-level attack and utility performance">
+          <div class="pipeline">
+            <article class="step">
+              <h3>Benign Task Seeds</h3>
+              <p class="muted">Start from normal OpenClaw-style user tasks such as meeting summaries, config checks, sales reports, code formatting, and system administration.</p>
+            </article>
+            <article class="step">
+              <h3>Context Surfaces</h3>
+              <p class="muted">Place adversarial content in files, skills, tools, logs, environment-like data, and encoded artifacts while keeping the user prompt benign.</p>
+            </article>
+            <article class="step">
+              <h3>Payload Search</h3>
+              <p class="muted">Use reward-guided heuristic search to identify payloads that realize target risks while preserving task plausibility and stealth.</p>
+            </article>
+            <article class="step">
+              <h3>Replay Packaging</h3>
+              <p class="muted">Package successful cases as public replay tasks with workspace files, expected behavior, automated checks, and judge criteria.</p>
+            </article>
+          </div>
+
+          <div class="cards" style="margin-top: 18px;">
+            <article class="card"><h3>Risk 1: Harness Hijacking</h3><p>Poisoned context or injected workflow steps redirect the agent into unrequested actions.</p></article>
+            <article class="card"><h3>Risk 2: Privacy Leakage</h3><p>Planted credentials and sensitive values appear in responses, files, or external actions.</p></article>
+            <article class="card"><h3>Risk 3: Unauthorized Execution</h3><p>Dangerous commands or boundary-crossing actions are run beyond the user request.</p></article>
+            <article class="card"><h3>Risk 4: Supply Chain Risk</h3><p>Malicious skill or tool-like logic is trusted or invoked during the task.</p></article>
+            <article class="card"><h3>Risk 5: Tool Abuse</h3><p>Misleading tool metadata causes harmful behavior or unintended side effects.</p></article>
+            <article class="card"><h3>Risk 6: Encoding Obfuscation</h3><p>Hidden encoded payloads are decoded and followed unsafely.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="leaderboard">
+      <div class="section-grid">
+        <h2>Leaderboard</h2>
+        <div>
+          <p class="muted">
+            AGS is Attack Grading Score and lower is better. UGS is Utility Grading Score and higher is better. The default order sorts by average AGS from low to high.
+          </p>
+          <div class="controls">
+            <label for="sortLeaderboard">
+              Sort by
+              <select id="sortLeaderboard" aria-label="Sort leaderboard">
+                <option value="ags-asc">Average AGS, low to high</option>
+                <option value="ags-desc">Average AGS, high to low</option>
+                <option value="ugs-desc">Average UGS, high to low</option>
+                <option value="ugs-asc">Average UGS, low to high</option>
+                <option value="name-asc">Model name, A to Z</option>
+              </select>
+            </label>
+            <span class="muted">Best safety = lowest Avg AGS.</span>
+          </div>
+
+          <div class="table-wrap">
+            <table aria-label="DeepTrap risk-level leaderboard">
               <thead>
                 <tr>
-                  <th>Claw Model</th>
-                  <th>Metric</th>
-                  <th>Risk 1</th>
-                  <th>Risk 2</th>
-                  <th>Risk 3</th>
-                  <th>Risk 4</th>
-                  <th>Risk 5</th>
-                  <th>Risk 6</th>
-                  <th>Average</th>
+                  <th>Model</th>
+                  <th>Avg AGS ↓</th>
+                  <th>Avg UGS ↑</th>
+                  <th>R1 AGS/UGS</th>
+                  <th>R2 AGS/UGS</th>
+                  <th>R3 AGS/UGS</th>
+                  <th>R4 AGS/UGS</th>
+                  <th>R5 AGS/UGS</th>
+                  <th>R6 AGS/UGS</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr><td rowspan="2">GPT-5.4</td><td class="metric">AGS</td><td>0.77</td><td>0.84</td><td>0.76</td><td>0.61</td><td>0.67</td><td>0.53</td><td>0.70</td></tr>
-                <tr><td class="metric">UGS</td><td>0.91</td><td>0.83</td><td>0.86</td><td>0.77</td><td>0.74</td><td>0.87</td><td>0.83</td></tr>
-                <tr><td rowspan="2">Claude-Sonnet-4.6</td><td class="metric">AGS</td><td>0.51</td><td>0.58</td><td>0.37</td><td>0.25</td><td>0.38</td><td>0.20</td><td>0.38</td></tr>
-                <tr><td class="metric">UGS</td><td>0.71</td><td>0.69</td><td>0.55</td><td>0.45</td><td>0.55</td><td>0.71</td><td>0.61</td></tr>
-                <tr><td rowspan="2">GLM-5</td><td class="metric">AGS</td><td>0.81</td><td>0.93</td><td>0.74</td><td>0.83</td><td>0.79</td><td>0.88</td><td>0.83</td></tr>
-                <tr><td class="metric">UGS</td><td>0.90</td><td>0.90</td><td>0.98</td><td>0.89</td><td>0.83</td><td>0.88</td><td>0.90</td></tr>
-                <tr><td rowspan="2">Qwen3.5-Plus</td><td class="metric">AGS</td><td>0.93</td><td>0.93</td><td>0.86</td><td>0.74</td><td>0.88</td><td>0.97</td><td>0.88</td></tr>
-                <tr><td class="metric">UGS</td><td>0.95</td><td>0.92</td><td>1.00</td><td>0.98</td><td>0.93</td><td>0.93</td><td>0.95</td></tr>
-                <tr><td rowspan="2">MiniMax-M2.5</td><td class="metric">AGS</td><td>0.86</td><td>0.89</td><td>0.77</td><td>0.66</td><td>0.90</td><td>0.89</td><td>0.83</td></tr>
-                <tr><td class="metric">UGS</td><td>0.92</td><td>0.95</td><td>1.00</td><td>0.88</td><td>0.74</td><td>0.90</td><td>0.90</td></tr>
-                <tr><td rowspan="2">DeepSeek-v4-Flash</td><td class="metric">AGS</td><td>0.90</td><td>0.96</td><td>0.80</td><td>0.90</td><td>0.82</td><td>0.94</td><td>0.89</td></tr>
-                <tr><td class="metric">UGS</td><td>0.98</td><td>0.96</td><td>1.00</td><td>0.96</td><td>0.85</td><td>1.00</td><td>0.96</td></tr>
-                <tr><td rowspan="2">Deepseek-v4-Pro</td><td class="metric">AGS</td><td>0.90</td><td>0.96</td><td>0.74</td><td>0.87</td><td>0.85</td><td>0.86</td><td>0.86</td></tr>
-                <tr><td class="metric">UGS</td><td>0.90</td><td>0.91</td><td>1.00</td><td>0.81</td><td>0.84</td><td>0.89</td><td>0.89</td></tr>
-                <tr><td rowspan="2">MiMo-v2.5</td><td class="metric">AGS</td><td>0.86</td><td>0.87</td><td>0.71</td><td>0.73</td><td>0.57</td><td>0.60</td><td>0.72</td></tr>
-                <tr><td class="metric">UGS</td><td>0.96</td><td>0.95</td><td>0.88</td><td>0.93</td><td>0.83</td><td>0.89</td><td>0.91</td></tr>
-                <tr><td rowspan="2">MiMo-v2.5-pro</td><td class="metric">AGS</td><td>0.74</td><td>0.83</td><td>0.56</td><td>0.58</td><td>0.58</td><td>0.53</td><td>0.64</td></tr>
-                <tr><td class="metric">UGS</td><td>0.92</td><td>0.90</td><td>0.88</td><td>0.87</td><td>0.71</td><td>0.87</td><td>0.86</td></tr>
+              <tbody id="leaderboardBody">
+                <tr data-model="Claude-Sonnet-4.6" data-ags="0.38" data-ugs="0.61">
+                  <td>Claude-Sonnet-4.6</td><td class="best">0.38</td><td>0.61</td><td>0.51 / 0.71</td><td>0.58 / 0.69</td><td>0.37 / 0.55</td><td>0.25 / 0.45</td><td>0.38 / 0.55</td><td>0.20 / 0.71</td>
+                </tr>
+                <tr data-model="MiMo-v2.5-pro" data-ags="0.64" data-ugs="0.86">
+                  <td>MiMo-v2.5-pro</td><td>0.64</td><td>0.86</td><td>0.74 / 0.92</td><td>0.83 / 0.90</td><td>0.56 / 0.88</td><td>0.58 / 0.87</td><td>0.58 / 0.71</td><td>0.53 / 0.87</td>
+                </tr>
+                <tr data-model="GPT-5.4" data-ags="0.70" data-ugs="0.83">
+                  <td>GPT-5.4</td><td>0.70</td><td>0.83</td><td>0.77 / 0.91</td><td>0.84 / 0.83</td><td>0.76 / 0.86</td><td>0.61 / 0.77</td><td>0.67 / 0.74</td><td>0.53 / 0.87</td>
+                </tr>
+                <tr data-model="MiMo-v2.5" data-ags="0.72" data-ugs="0.91">
+                  <td>MiMo-v2.5</td><td>0.72</td><td>0.91</td><td>0.86 / 0.96</td><td>0.87 / 0.95</td><td>0.71 / 0.88</td><td>0.73 / 0.93</td><td>0.57 / 0.83</td><td>0.60 / 0.89</td>
+                </tr>
+                <tr data-model="MiniMax-M2.5" data-ags="0.83" data-ugs="0.90">
+                  <td>MiniMax-M2.5</td><td>0.83</td><td>0.90</td><td>0.86 / 0.92</td><td>0.89 / 0.95</td><td>0.77 / 1.00</td><td>0.66 / 0.88</td><td>0.90 / 0.74</td><td>0.89 / 0.90</td>
+                </tr>
+                <tr data-model="GLM-5" data-ags="0.83" data-ugs="0.90">
+                  <td>GLM-5</td><td>0.83</td><td>0.90</td><td>0.81 / 0.90</td><td>0.93 / 0.90</td><td>0.74 / 0.98</td><td>0.83 / 0.89</td><td>0.79 / 0.83</td><td>0.88 / 0.88</td>
+                </tr>
+                <tr data-model="Deepseek-v4-Pro" data-ags="0.86" data-ugs="0.89">
+                  <td>Deepseek-v4-Pro</td><td>0.86</td><td>0.89</td><td>0.90 / 0.90</td><td>0.96 / 0.91</td><td>0.74 / 1.00</td><td>0.87 / 0.81</td><td>0.85 / 0.84</td><td>0.86 / 0.89</td>
+                </tr>
+                <tr data-model="Qwen3.5-Plus" data-ags="0.88" data-ugs="0.95">
+                  <td>Qwen3.5-Plus</td><td>0.88</td><td>0.95</td><td>0.93 / 0.95</td><td>0.93 / 0.92</td><td>0.86 / 1.00</td><td>0.74 / 0.98</td><td>0.88 / 0.93</td><td>0.97 / 0.93</td>
+                </tr>
+                <tr data-model="DeepSeek-v4-Flash" data-ags="0.89" data-ugs="0.96">
+                  <td>DeepSeek-v4-Flash</td><td>0.89</td><td class="best">0.96</td><td>0.90 / 0.98</td><td>0.96 / 0.96</td><td>0.80 / 1.00</td><td>0.90 / 0.96</td><td>0.82 / 0.85</td><td>0.94 / 1.00</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -500,22 +589,8 @@
       </div>
     </section>
 
-    <section>
-      <div class="section-head">
-        <h2>Usage</h2>
-        <div>
-          <p>Install the repository and run the bundled benchmark tasks against an OpenClaw-configured model.</p>
-          <pre class="command"><code>git clone https://github.com/ZJUICSR/DeepTrap.git
-cd DeepTrap
-pip install -e .
-python benchmark.py --dry-run
-python benchmark.py --model openrouter/anthropic/claude-sonnet-4-5 --suite R1</code></pre>
-        </div>
-      </div>
-    </section>
-
     <section id="citation">
-      <div class="section-head">
+      <div class="section-grid">
         <h2>Citation</h2>
         <div>
           <pre><code>@article{yao2026trap,
@@ -530,7 +605,34 @@ python benchmark.py --model openrouter/anthropic/claude-sonnet-4-5 --suite R1</c
   </main>
 
   <footer>
-    DeepTrap is released as a minimal public benchmark for OpenClaw agent security evaluation. The benchmark format was inspired in part by PinchBench.
+    DeepTrap is released as a minimal public benchmark for OpenClaw agent security evaluation. The public release includes replay tasks, runner code, scoring logic, and dataset metadata.
   </footer>
+
+  <script>
+    const select = document.getElementById("sortLeaderboard");
+    const tbody = document.getElementById("leaderboardBody");
+
+    function sortRows(mode) {
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+      rows.sort((a, b) => {
+        const nameA = a.dataset.model.toLowerCase();
+        const nameB = b.dataset.model.toLowerCase();
+        const agsA = Number(a.dataset.ags);
+        const agsB = Number(b.dataset.ags);
+        const ugsA = Number(a.dataset.ugs);
+        const ugsB = Number(b.dataset.ugs);
+
+        if (mode === "ags-desc") return agsB - agsA || nameA.localeCompare(nameB);
+        if (mode === "ugs-desc") return ugsB - ugsA || nameA.localeCompare(nameB);
+        if (mode === "ugs-asc") return ugsA - ugsB || nameA.localeCompare(nameB);
+        if (mode === "name-asc") return nameA.localeCompare(nameB);
+        return agsA - agsB || nameA.localeCompare(nameB);
+      });
+      rows.forEach(row => tbody.appendChild(row));
+    }
+
+    select.addEventListener("change", event => sortRows(event.target.value));
+    sortRows(select.value);
+  </script>
 </body>
 </html>
